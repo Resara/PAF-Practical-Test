@@ -1,0 +1,3 @@
+If Programme does not run please change DBserver port in connection method into 3306
+
+con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3307/healthcaredb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
