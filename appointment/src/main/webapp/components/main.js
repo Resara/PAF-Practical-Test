@@ -71,16 +71,16 @@ function onHospitalSaveComplete(response, status){
 //UPDATE========================================== 
 $(document).on("click", ".btnUpdate", function(event) 
 		{     
-	$("#hidAppIDSave").val($(this).closest("tr").find('#hidAppIDUpdate').val());     
-	$("#name").val($(this).closest("tr").find('td:eq(0)').text());    
-	$("#mobile").val($(this).closest("tr").find('td:eq(1)').text());     
-	$("#email").val($(this).closest("tr").find('td:eq(2)').text());     
-	$("#nic").val($(this).closest("tr").find('td:eq(3)').text()); 
-	$("#address").val($(this).closest("tr").find('td:eq(4)').text()); 
-	$("#date").val($(this).closest("tr").find('td:eq(5)').text()); 
-	$("#hospital").val($(this).closest("tr").find('td:eq(6)').text()); 
-	$("#doctor").val($(this).closest("tr").find('td:eq(7)').text()); 
-	$("#msg").val($(this).closest("tr").find('td:eq(8)').text());
+				$("#hidAppIDSave").val($(this).closest("tr").find('#hidAppIDUpdate').val());     
+				$("#name").val($(this).closest("tr").find('td:eq(0)').text());    
+				$("#mobile").val($(this).closest("tr").find('td:eq(1)').text());     
+				$("#email").val($(this).closest("tr").find('td:eq(2)').text());     
+				$("#nic").val($(this).closest("tr").find('td:eq(3)').text()); 
+				$("#address").val($(this).closest("tr").find('td:eq(4)').text()); 
+				$("#date").val($(this).closest("tr").find('td:eq(5)').text()); 
+				$("#hospital").val($(this).closest("tr").find('td:eq(6)').text()); 
+				$("#doctor").val($(this).closest("tr").find('td:eq(7)').text()); 
+				$("#msg").val($(this).closest("tr").find('td:eq(8)').text());
 
 });
 
@@ -91,7 +91,7 @@ $(document).on("click", ".btnRemove", function(event){
 	{
 		url : "AppointmentAPI",
 		type : "DELETE",
-		data : "appID=" + $(this).data("appID"),
+		data : "appID=" + $(this).data("appid"),
 		dataType : "text",
 		complete : function(response, status)
 		{

@@ -13,7 +13,7 @@ public class Appointment {
 			Connection con = null;
 			
 			try {
-				 Class.forName("com.mysql.jdbc.Driver");
+				 Class.forName("com.mysql.cj.jdbc.Driver");
 				 //Provide the correct details: DBServer/DBName, username, password 
 				 con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3307/healthcaredb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
 
@@ -27,6 +27,9 @@ public class Appointment {
 			
 			return con; 
 		}
+		
+		
+		// Read 
 		
 		public String readAppointment() {  
 			String output = "";  
@@ -79,7 +82,7 @@ public class Appointment {
 					  
 					// buttons     
 					  output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"
-					  		+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-doctorid='"+ appID +"'>"+"</td></tr>";
+					  		+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-appID='"+ appID +"'>"+"</td></tr>";
 
 					} 
 				  
@@ -97,6 +100,8 @@ public class Appointment {
 			}
 		
 		//Insert appointment
+		
+		
 		public String insertAppointment(String fullName, String mobile, String email, String nic, String address, String date, String hospName , String docName , String msg) {
 			String output = "";
 
@@ -140,6 +145,9 @@ public class Appointment {
 
 			 return output; 
 		}
+		
+		
+		
 		
 		//Update hospitals
 		public String updateAppointment(String appID, String fullName, String mobile, String email, String nic, String address, String date, String hospName, String docName , String msg )  {   
@@ -185,6 +193,9 @@ public class Appointment {
 		  return output;  
 		  }
 		
+		
+		// Delete Appointment
+		
 		public String deleteAppointment(String appID) {  
 			String output = ""; 
 		 
@@ -192,7 +203,7 @@ public class Appointment {
 			 Connection con = connect();
 		 
 		  if (con == null)   {    
-			  return "Error while connecting to the database for deleting.";   
+			  return "Error while connecting to the database for deleting";   
 		  } 
 		 
 		  // create a prepared statement   
@@ -201,21 +212,26 @@ public class Appointment {
 		  PreparedStatement preparedStmt = con.prepareStatement(query); 
 		 
 		  // binding values   
-		  preparedStmt.setInt(1, Integer.parseInt(appID));       
+		  preparedStmt.setInt(1, Integer.parseInt(appID));      
 		  // execute the statement   
 		  preparedStmt.execute();   
 		  con.close(); 
 		 
 		  //create JSON Object
-		  String newAppointment = readAppointment();
-		  output = "{\"status\":\"success\", \"data\": \"" + newAppointment + "\"}";
+		  String newApp = readAppointment();
+		  output = "{\"status\":\"success\", \"data\": \"" + newApp + "\"}";
 		  }  catch (Exception e)  {  
 			  //Create JSON object 
 			  output = "{\"status\":\"error\", \"data\": \"Error while Deleting Appointment.\"}";
+			  System.out.println("Deleting Error");
 			  System.err.println(e.getMessage());  
 			  
 		 } 
 		 
 		 return output; 
 		 }
+		
+		
+		
+		
 }
